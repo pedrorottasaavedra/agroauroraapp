@@ -11,15 +11,13 @@ function App() {
         const principal = data.clientPrincipal;
 
         if (!principal) {
-          // No hay sesión activa → forzar login con Entra ID
+          // No hay sesión activa → redirigir a login Entra ID
           window.location.href = "/.auth/login/aad";
         } else {
-          // Validar que tenga el rol "authenticated"
           if (principal.userRoles.includes("authenticated")) {
             setUser(principal.userDetails);
           } else {
-            // Si no tiene rol adecuado, mostrar mensaje claro
-            alert("No tienes permisos para acceder a esta aplicación.");
+            alert("No tienes permiso para acceder a esta aplicación.");
             window.location.href = "/.auth/logout";
           }
         }
@@ -28,13 +26,27 @@ function App() {
       });
   }, []);
 
-  if (checking) return <p style={{ textAlign: "center" }}>Verificando sesión...</p>;
+  if (checking) {
+    return <p style={{ textAlign: "center", paddingTop: "50px" }}>Verificando sesión...</p>;
+  }
 
   return (
     <div style={{ textAlign: "center", paddingTop: "50px" }}>
-      {user ? <h1>Bienvenido, {user}!</h1> : null}
+      <h1>Bienvenido, {user}!</h1>
+      <button
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          fontSize: "16px",
+          cursor: "pointer"
+        }}
+        onClick={() => window.location.href = "/.auth/logout"}
+      >
+        Cerrar sesión
+      </button>
     </div>
   );
 }
 
 export default App;
+  
