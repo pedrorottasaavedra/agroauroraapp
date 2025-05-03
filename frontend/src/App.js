@@ -18,7 +18,7 @@ function App() {
             setUser(principal.userDetails);
           } else {
             alert("No tienes permiso para acceder a esta aplicación.");
-            window.location.href = "/.auth/logout";
+            window.location.href = "/.auth/login/aad";
           }
         }
 
@@ -49,4 +49,3 @@ function App() {
 }
 
 export default App;
-  
