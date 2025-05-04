@@ -1,0 +1,19 @@
+# dependencias
+node_modules/
+
+# build
+build/
+
+# entorno
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# sistema
+.DS_Store
+*.log
+
+# VSCode
+.vscode/
